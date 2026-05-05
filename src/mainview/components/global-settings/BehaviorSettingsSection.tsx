@@ -1,13 +1,18 @@
 import type {
 	GlobalSettings,
+	Project,
+	TasksQuickSwitchFilter,
+	TasksQuickSwitchShortcut,
 	TerminalKeymapPreset,
 } from "../../../shared/types";
 import type { TFunction } from "../../i18n";
 import SettingsSection from "./SettingsSection";
+import TasksQuickSwitchSettings from "./TasksQuickSwitchSettings";
 
 interface BehaviorSettingsSectionProps {
 	t: TFunction;
 	globalSettings: GlobalSettings;
+	projects: Project[];
 	caffeinateAvailable: boolean;
 	keymapPreset: TerminalKeymapPreset;
 	tipsResetDone: boolean;
@@ -15,6 +20,10 @@ interface BehaviorSettingsSectionProps {
 	onKeymapChange: (preset: TerminalKeymapPreset) => void;
 	onPreventSleepToggle: (enabled: boolean) => void;
 	onSoundToggle: (enabled: boolean) => void;
+	onTasksQuickSwitchShortcutChange: (
+		shortcut: TasksQuickSwitchShortcut,
+	) => void;
+	onTasksQuickSwitchFiltersChange: (filters: TasksQuickSwitchFilter[]) => void;
 	onTaskDropPositionChange: (position: "top" | "bottom") => void;
 	onTaskOpenModeChange: (mode: "split" | "fullscreen") => void;
 	onTipsDisabledToggle: (disabled: boolean) => void;
@@ -24,6 +33,7 @@ interface BehaviorSettingsSectionProps {
 export default function BehaviorSettingsSection({
 	t,
 	globalSettings,
+	projects,
 	caffeinateAvailable,
 	keymapPreset,
 	tipsResetDone,
@@ -31,6 +41,8 @@ export default function BehaviorSettingsSection({
 	onKeymapChange,
 	onPreventSleepToggle,
 	onSoundToggle,
+	onTasksQuickSwitchShortcutChange,
+	onTasksQuickSwitchFiltersChange,
 	onTaskDropPositionChange,
 	onTaskOpenModeChange,
 	onTipsDisabledToggle,
@@ -109,6 +121,14 @@ export default function BehaviorSettingsSection({
 					</div>
 				</button>
 			</div>
+
+			<TasksQuickSwitchSettings
+				t={t}
+				globalSettings={globalSettings}
+				projects={projects}
+				onTasksQuickSwitchShortcutChange={onTasksQuickSwitchShortcutChange}
+				onTasksQuickSwitchFiltersChange={onTasksQuickSwitchFiltersChange}
+			/>
 
 			<div>
 				<label className="block text-fg text-sm font-semibold mb-2">
