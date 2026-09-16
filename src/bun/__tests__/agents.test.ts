@@ -1525,6 +1525,7 @@ describe("claudeDefaultEnv — Claude's bypass guard under uid 0", () => {
 		for (const env of [claudeDefaultEnv(0, "linux"), claudeDefaultEnv(501, "darwin")]) {
 			expect(env.CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS).toBe("1");
 			expect(env.CLAUDE_CODE_NO_FLICKER).toBe("1");
+			expect(env.CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN).toBe("1");
 		}
 	});
 

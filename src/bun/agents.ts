@@ -685,6 +685,10 @@ export function findConfig(
 export const CLAUDE_DEFAULT_ENV: Record<string, string> = {
 	CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS: "1",
 	CLAUDE_CODE_NO_FLICKER: "1",
+	// Keep Claude out of the terminal's alternate screen, where neither tmux nor
+	// the native backend retains any scrollback.
+	// See decisions/2026/09/16/claude-out-of-the-alternate-screen.md.
+	CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN: "1",
 };
 
 /**
